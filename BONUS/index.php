@@ -2,6 +2,33 @@
     /* Importo e collego il file array.php */
     include __DIR__.'/partials/array.php';
 
+    /* Filtro gli hotel in base alla selezione del parcheggio oppure no */
+    if(isset($_GET['park'])) {
+        /* Creo un array vuoto per contenere gli hotel con parcheggio */
+        $parkHotel = [];
+        foreach($hotels as $hotelp){
+            if($hotelp['parking'] == filter_var($_GET['park'], FILTER_VALIDATE_BOOLEAN)){
+                $parkHotel [] = $hotelp;
+            }else if ($_GET['park'] == 'all'){
+                $parkHotel = $hotels;
+            }
+        }
+        $hotels = $parkHotel;
+    }
+
+    /* Filtro gli hotel in base alla selezione del parcheggio oppure no */
+    if(isset($_GET['rate'])) {
+        /* Creo un array vuoto per contenere gli hotel con parcheggio */
+        $rateHotel = [];
+        foreach($hotels as $hotelRate){
+            if($hotelRate['vote'] == $_GET['rate']){
+                $rateHotel [] = $hotelRate;
+            }else if ($_GET['rate'] == 'all'){
+                $rateHotel = $hotels;
+            }
+        } 
+                $hotels = $rateHotel;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +51,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <!-- Inserisco la tabella dove visualizzo i dati completi -->
-                <table class="table table-hover mt-5 border border-light rounded-2">
+                    <form action="index.php" method="GET">
+                        <select class="form-select w-25 mt-3" name="park" id="park" aria-label="Hotel con Parcheggio">
+                            <option value="all" selected>Hotel con parcheggio?</option>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
+                        </select>
+                        <select class="form-select w-25 mt-3" name="rate" id="rate" aria-label="Voto Hotel">
+                            <option value="all" selected>Valutazione</option>
+                            <option value="1">1 Stella</option>
+                            <option value="2">2 Stelle</option>
+                            <option value="3">3 Stelle</option>
+                            <option value="4">4 Stelle</option>
+                            <option value="5">5 Stelle</option>
+                        </select>
+                        <button type="submit" class="btn btn-success mt-2">Filtra</button>
+                    </form>
+                </div>
+                <div class="col-12">
+                <!-- Inserisco la tabella dove visualizzo i dati completi -->
+                <table class="table table-hover mt-3 border border-light rounded-2">
                     <thead class="text-center">
                         <tr class="table-dark">
                             <th scope="col">NAME</th>
