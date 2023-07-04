@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Inserisco la tabella dove visualizzo i dati completi -->
-                <table class="table table-hover mt-5">
+                <table class="table table-hover mt-5 border border-light rounded-2">
                     <thead class="text-center">
                         <tr class="table-dark">
                             <th scope="col">NAME</th>
