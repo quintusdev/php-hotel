@@ -21,7 +21,7 @@
         /* Creo un array vuoto per contenere gli hotel con parcheggio */
         $rateHotel = [];
         foreach($hotels as $hotelRate){
-            if($hotelRate['vote'] == $_GET['rate']){
+            if($hotelRate['vote'] >= $_GET['rate']){
                 $rateHotel [] = $hotelRate;
             }else if ($_GET['rate'] == 'all'){
                 $rateHotel = $hotels;
