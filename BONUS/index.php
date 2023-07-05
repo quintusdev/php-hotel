@@ -90,7 +90,7 @@
                                     <?php echo $hotel['description']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $hotel['parking']; ?>
+                                    <?php echo $hotel['parking'] ? 'Sì' : 'No'; ?>
                                 </td>
                                 <td>
                                     <?php echo $hotel['vote']; ?>
